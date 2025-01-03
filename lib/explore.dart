@@ -1,53 +1,204 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-void main() {
-  runApp(MyApp());
-}
+class ExploreScreen extends StatefulWidget {
+  const ExploreScreen({super.key});
 
-class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'SizedBox Example',
-      home: MyHomePage1(),
-    );
-  }
+  State<ExploreScreen> createState() => _ExploreScreenState();
 }
 
-class MyHomePage1 extends StatelessWidget {
+class _ExploreScreenState extends State<ExploreScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('SizedBox Example'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(
-              height: 200,
-              child: Container(
-                color: Colors.blue,
-                child: Center(
+      appBar: AppBar(),
+      body: Column(
+        children: [
+          Text(
+            DateFormat('dd/mm/yyyy').format(DateTime.now()),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: (20)),
+          ),
+          SizedBox(
+            height: (10),
+          ),
+          Row(
+            children: [
+              ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(Colors.green)),
+                  onPressed: () {},
                   child: Text(
-                    'This is a SizedBox with height 200',
+                    'S ',
                     style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
                     ),
-                    textAlign: TextAlign.center,
+                  )),
+              SizedBox(
+                width: (5),
+              ),
+              ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(Colors.green)),
+                  onPressed: () {},
+                  child: Text(
+                    'M',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.black),
+                  )),
+              SizedBox(
+                width: (5),
+              ),
+              ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(Colors.green)),
+                  onPressed: () {},
+                  child: Text(
+                    'T',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.black),
+                  )),
+              SizedBox(
+                width: (5),
+              ),
+              ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(Colors.green)),
+                  onPressed: () {},
+                  child: Text(
+                    'W ',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.black),
+                  )),
+              SizedBox(
+                width: (5),
+              ),
+              ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(Colors.green)),
+                  onPressed: () {},
+                  child: Text(
+                    'T ',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.black),
+                  )),
+              SizedBox(
+                width: (5),
+              ),
+              ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(Colors.green)),
+                  onPressed: () {},
+                  child: Text(
+                    'F ',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.black),
+                  )),
+            ],
+          ),
+          Row(
+            children: [
+              Text(
+                'Good Morning',
+                textAlign: TextAlign.left,
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Text(
+                  'Todays Report',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: (20)),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(children: [
+                Center(
+                  child: Container(
+                    child: Text(
+                      'base goal ',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                    color: Colors.grey[600],
+                    width: 150,
+                    height: 170,
+                  ),
+                ),
+              ]),
+            ),
+          ),
+          Expanded(
+            child: Center(
+              child: Container(
+                child: Text(
+                  'base goal ',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+                color: Colors.grey[600],
+                width: 150,
+                height: 170,
+              ),
+            ),
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: Center(
+                  child: Container(
+                    child: Text(
+                      'base goal ',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                    color: Colors.grey[600],
+                    width: 150,
+                    height: 170,
                   ),
                 ),
               ),
+            ],
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                child: Container(
+                  child: Text(
+                    'base goal ',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+                  color: Colors.grey[600],
+                  width: 150,
+                  height: 170,
+                ),
+              ),
             ),
-            SizedBox(height: 20), // Additional space between widgets
-            Text(
-              'Below is the SizedBox',
-              style: TextStyle(fontSize: 18),
-            ),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
