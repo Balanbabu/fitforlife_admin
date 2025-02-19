@@ -1,5 +1,9 @@
-import 'package:flutter/cupertino.dart';
+import 'package:fitforlife_admin/common_widgets.dart/change_password.dart';
+import 'package:fitforlife_admin/features/signin/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../common_widgets.dart/custom_alert_dialog.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -91,10 +95,16 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
         ),
-        const ColoredBox(
+        ColoredBox(
           color: Colors.green,
           child: Material(
             child: ListTile(
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => const ChangePasswordDialog(),
+                );
+              },
               title: Text('change password'),
               tileColor: Colors.white,
             ),
@@ -109,11 +119,33 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
         ),
-        const ColoredBox(
+        ColoredBox(
           color: Colors.green,
           child: Material(
             child: ListTile(
-              title: Text('create new account'),
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => CustomAlertDialog(
+                    title: "SIGN OUT",
+                    content: const Text(
+                      "Are you sure you want to Sign Out? Clicking 'Sign Out' will end your current session and require you to sign in again to access your account.",
+                    ),
+                    primaryButton: "SIGN OUT",
+                    onPrimaryPressed: () {
+                      Supabase.instance.client.auth.signOut();
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginScreen(),
+                        ),
+                        (route) => false,
+                      );
+                    },
+                  ),
+                );
+              },
+              title: Text('Sign Out'),
               tileColor: Colors.white,
             ),
           ),

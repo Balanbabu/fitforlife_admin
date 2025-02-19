@@ -1,9 +1,9 @@
 import 'dart:ui';
 
-import 'package:fitforlife_admin/mealplan_screen.dart';
-import 'package:fitforlife_admin/profile.dart';
-import 'package:fitforlife_admin/recipe_screen.dart';
-import 'package:fitforlife_admin/workout.dart';
+import 'package:fitforlife_admin/features/mealplan_screen.dart';
+import 'package:fitforlife_admin/features/profile.dart';
+import 'package:fitforlife_admin/features/recipe_screen.dart';
+import 'package:fitforlife_admin/features/workout.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -33,71 +33,72 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.grey[100],
-        body: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            TabBarView(
-              controller: _tabController,
-              children: [
-                ExploreScreen(),
-                ExplorerSection(),
-                AnalyticsSection(),
-                ProfileScreen(),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              child: Material(
-                elevation: 10,
-                borderRadius: BorderRadius.circular(50),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CustomNavBarITem(
-                        isActive: _tabController.index == 0,
-                        iconData: Icons.home,
-                        label: "Home",
-                        onTap: () {
-                          _tabController.animateTo(0);
-                        },
-                      ),
-                      CustomNavBarITem(
-                        isActive: _tabController.index == 1,
-                        iconData: Icons.explore,
-                        label: "explore",
-                        onTap: () {
-                          _tabController.animateTo(1);
-                        },
-                      ),
-                      CustomNavBarITem(
-                        isActive: _tabController.index == 2,
-                        iconData: Icons.analytics,
-                        label: "analytics",
-                        onTap: () {
-                          _tabController.animateTo(2);
-                        },
-                      ),
-                      CustomNavBarITem(
-                        isActive: _tabController.index == 3,
-                        iconData: Icons.person,
-                        label: "person",
-                        onTap: () {
-                          _tabController.animateTo(3);
-                        },
-                      ),
-                    ],
-                  ),
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: false,
+        title: Text("Fit For Life"),
+      ),
+      body: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          TabBarView(
+            controller: _tabController,
+            children: [
+              ExploreScreen(),
+              ExplorerSection(),
+              AnalyticsSection(),
+              ProfileScreen(),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            child: Material(
+              elevation: 10,
+              borderRadius: BorderRadius.circular(50),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomNavBarITem(
+                      isActive: _tabController.index == 0,
+                      iconData: Icons.home,
+                      label: "Home",
+                      onTap: () {
+                        _tabController.animateTo(0);
+                      },
+                    ),
+                    CustomNavBarITem(
+                      isActive: _tabController.index == 1,
+                      iconData: Icons.explore,
+                      label: "explore",
+                      onTap: () {
+                        _tabController.animateTo(1);
+                      },
+                    ),
+                    CustomNavBarITem(
+                      isActive: _tabController.index == 2,
+                      iconData: Icons.analytics,
+                      label: "analytics",
+                      onTap: () {
+                        _tabController.animateTo(2);
+                      },
+                    ),
+                    CustomNavBarITem(
+                      isActive: _tabController.index == 3,
+                      iconData: Icons.person,
+                      label: "person",
+                      onTap: () {
+                        _tabController.animateTo(3);
+                      },
+                    ),
+                  ],
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -814,19 +815,22 @@ class _ExploreScreenState extends State<ExploreScreen> {
       padding: EdgeInsets.symmetric(horizontal: 20),
       shrinkWrap: true,
       children: [
+        SizedBox(
+          height: 10,
+        ),
         Text(
           DateFormat('dd-MM-yyyy').format(DateTime.now()),
           style: TextStyle(
               fontWeight: FontWeight.bold, fontSize: (20), color: Colors.black),
         ),
         SizedBox(
-          height: (10),
+          height: 5,
         ),
         SizedBox(
-          height: 100,
+          height: 80,
           child: ListView.separated(
               scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
               itemBuilder: (context, index) => DateButton(
                     label: days[index]['label'],
                     label1: days[index]['label1'],
